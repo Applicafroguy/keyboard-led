@@ -1,5 +1,5 @@
 # keyboard-led
-![Screenshot of keyboard-led](https://github.com/Applicafroguy/keyboard-led/raw/master/.screenshots/led.jpg)
+![Screenshot of keyboard-led](https://github.com/Applicafroguy/keyboard-led/raw/master/led.jpg)
 
 # Installing keyboard-led on Arch Linux
 
