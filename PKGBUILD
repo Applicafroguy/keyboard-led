@@ -28,7 +28,7 @@ package() {
     fi
     mkdir -p "${pkgdir}/opt/${pkgname}/keyboardled"
 
-    install -Dm755 keyboardled/* -t "${pkgdir}/opt/${pkgname}/keyboardled"
+    install -Dm755 ./* -t "${pkgdir}/opt/${pkgname}/keyboardled"
     install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
     install -Dm755 keyboard.sh "${pkgdir}/usr/bin/keyboardled"
