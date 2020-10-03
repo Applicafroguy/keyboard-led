@@ -1,5 +1,5 @@
 # Maintainer: Sivuyile Magutywa <s.magutywa@kernet.co.za>
-pkgname=keyboard-led-git
+pkgname=keyboard-led
 pkgver=0.1
 pkgrel=1
 pkgdesc="A CLI for turning keyboard scroll lock on and off."
@@ -16,14 +16,16 @@ replaces=()
 backup=()
 options=()
 source=("git+$url")
-noextract=()
 md5sums=('SKIP')
 validpgpkeys=()
 
 package() {
     echo "$srcdir/$pkgname"
 	cd "$srcdir/$pkgname"
-    if [${pkgdir}/opt/${pkgname}/keyboardled]; then rm -rf "${pkgdir}/opt/${pkgname}/keyboardled"
+    if [ ${pkgdir}/opt/${pkgname}/keyboardled ]
+    then 
+        rm -rf "${pkgdir}/opt/${pkgname}/keyboardled"
+    fi
     mkdir -p "${pkgdir}/opt/${pkgname}/keyboardled"
 
     install -Dm755 keyboardled/* -t "${pkgdir}/opt/${pkgname}/keyboardled"
