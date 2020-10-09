@@ -70,6 +70,8 @@ case "$1" in
 		;;
 	*)
     	echo "Input error, too many arguments."
+		echo "For full list of [Options] use --help"
+		_help
     	exit 1
     	;;
 esac
