@@ -1,16 +1,13 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Dir
 search_dir=/sys/class/leds
 
 # Get list of files
-echo "List"
-echo "------------------"
-for file in "$search_dir"/*
+for f in "$search_dir"/*
 do
-	echo $file
+	file=$f
 done
-echo "------------------"
 # Split File Path
 split_path=($(echo $file | tr "/" "\n" ))
 
@@ -18,7 +15,7 @@ split_path=($(echo $file | tr "/" "\n" ))
 input=($(echo ${split_path[3]} | tr "::" "\n"))
 
 # Turn Led function
-led_on_off() {
+function led_on_off {
 
 	# Check if Backlight is on
 	is_on=$(cat $input_path)
@@ -32,27 +29,47 @@ led_on_off() {
 	fi
 }
 
-# If scroll lock
-if [ "$1" == "scroll" ]
-then
-	# Create Input Path
-	input_path="$search_dir/$input::scrolllock/brightness"
+# Format Help
+fmt_help="  %-20s\t%-54s\n"
 
-	led_on_off
+function _help {
+    echo "Description: Keyboard Backlight, Caps Lock & Num Lock script."
+    echo ""
+    echo "Usage: keyboardled [option...]"
+	echo ""
+    printf "${fmt_help}" \
+		"-s, --scroll" "turn on/off keyboard backlight." \
+		"-c, --caps" "turn on/off caps lock." \
+		"-n, --num" "turn on/off num lock" \
+		"-h, --help, help" "print this usage message." 
+}
 
+# Display Name
+echo ""
+echo "Keyboard Led"
+echo "..............................."
+echo ""
 
-elif [ "$1" == "caps" ]
-then
-	# Create Input Path
-	input_path="$search_dir/$input::capslock/brightness"
-
-	led_on_off
-elif [ "$1" == "num" ]
-then 
-	# Create Input Path
-	input_path="$search_dir/$input::numlock/brightness"
-
-	led_on_off
-fi
-
-
+case "$1" in
+	-h | --help | help)
+		_help
+		;;
+	-s | --scroll)
+		# Create Input Path
+		input_path="$search_dir/$input::scrolllock/brightness"
+		led_on_off
+		;;
+	-c | --caps)
+		input_path="$search_dir/$input::capslock/brightness"
+		led_on_off
+		;;
+	-n | --num)
+		# Create Input Path
+		input_path="$search_dir/$input::numlock/brightness"
+		led_on_off
+		;;
+	*)
+    	echo "Input error, too many arguments."
+    	exit 1
+    	;;
+esac
