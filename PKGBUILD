@@ -20,8 +20,8 @@ md5sums=('SKIP')
 validpgpkeys=()
 
 package() {
-    echo "$srcdir/$pkgname"
-	cd "$srcdir/$pkgname"
+    echo "$srcdir/keyboard-led"
+	cd "$srcdir/keyboard-led"
     if [ ${pkgdir}/opt/${pkgname}/keyboardled ]
     then 
         rm -rf "${pkgdir}/opt/${pkgname}/keyboardled"
