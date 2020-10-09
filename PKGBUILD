@@ -1,5 +1,5 @@
 # Maintainer: Sivuyile Magutywa <s.magutywa@kernet.co.za>
-pkgname=keyboard-led
+pkgname=keyboard-led-git
 pkgver=0.1
 pkgrel=1
 pkgdesc="A CLI for turning keyboard scroll lock on and off."
@@ -10,7 +10,7 @@ depends=()
 makedepends=(git make)
 checkdepends=()
 optdepends=(bash)
-provides=(keyboard-led)
+provides=(keyboardled)
 conflicts=()
 replaces=()
 backup=()
